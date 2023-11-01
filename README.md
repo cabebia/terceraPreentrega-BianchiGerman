@@ -31,6 +31,7 @@ Con todo lo anteriormente nombrado la aplicación cuenta con:
 6. Uso de otros frameworks (Bootstrap) en combinación.
 
 /#/ COMO PROBARLO /#/
+
 Utilizar la url 127.0.0.1:8000/blog para comenzar en la aplicación.
 
 Click en el botón de Registrarme. 
