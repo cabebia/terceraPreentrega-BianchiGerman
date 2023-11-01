@@ -32,13 +32,23 @@ Con todo lo anteriormente nombrado la aplicación cuenta con:
 
 /#/ COMO PROBARLO /#/
 Utilizar la url 127.0.0.1:8000/blog para comenzar en la aplicación.
+
 Click en el botón de Registrarme. 
+
 Completar datos y enviar.
+
 Si todo salió OK, click botón iniciar sesión.
+
 Completar datos y enviar.
+
 Si todo salió OK, ir a Inicio. En inicio se muestran los últimos 4 textos subidos.
+
 Click en Nuevo post.
+
 Completar datos y enviar.
+
 Si todo salió OK hasta acá, el nuevo texto debería verse en la pantalla de inicio.
+
 Click sobre el título y/o subtítulo y lo llevará a otra página para ver la nota completa.
+
 
