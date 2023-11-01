@@ -37,7 +37,8 @@ def v_register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
-
+def v_index2(request):
+    return redirect('index')
 
 
 

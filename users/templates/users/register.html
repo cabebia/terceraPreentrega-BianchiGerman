@@ -2,12 +2,15 @@
 {% load static %}
 
 {% block mainContent %}
-
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Registrate!</button>
-</form>
-<a href="{% url 'login' %}"">Iniciar sesion</button>
-    
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary" type="submit">Registrate!</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
