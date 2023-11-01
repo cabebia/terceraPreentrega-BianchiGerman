@@ -4,5 +4,9 @@ from .models import BlogPost  # Asegúrate de que estás importando tu modelo Bl
 class BlogPostForm(forms.ModelForm):
     class Meta:
         model = BlogPost
-        fields = ['title', 'subtitle', 'postdate', 'postContent']
-
+        fields = ['title', 'subtitle', 'postContent']
+        labels = {
+            'title': 'Título',
+            'subtitle': 'Subtítulo',
+            'postContent': 'Empieze a escribir su idea aca:',
+        }

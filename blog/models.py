@@ -7,7 +7,7 @@ class BlogPost(models.Model):
     userId = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     subtitle = models.CharField(max_length=250)
-    postdate = models.DateField(auto_now_add=False)
+    postdate = models.DateField(auto_now_add=True)
     postContent = models.TextField()
 
     def __str__(self):

@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block mainContent %}
-
-        <!-- Post Content-->
+        <!-- V1 -->
+        <!-- Post Content -->
         <article class="mb-4">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -11,12 +11,14 @@
                         <form action="" method="POST">
                             {% csrf_token %}
                                 {{ form.as_p }}
-                            <button>Subir</button>
+                            <button class="btn btn-primary" >Subir</button>
                         </form>                 
                     </div>
                 </div>
             </div>
         </article>
+
+
 
 
 {% endblock %}
