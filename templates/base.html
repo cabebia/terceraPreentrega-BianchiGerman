@@ -38,7 +38,7 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'register' %}">Registrarme</a></li>
                         {% endif %}
                         {% if request.user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="">Hola {{user.username}} </a></li>
+                        <li id="nav-user" class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="">Hola {{user.username}} </a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'logout' %}">Cerrar sesion</a></li>
                         {% endif %}
                     </ul>
