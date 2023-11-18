@@ -38,7 +38,15 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'register' %}">Registrarme</a></li>
                         {% endif %}
                         {% if request.user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="">Hola {{user.username}} </a></li>
+                        <li id="nav-user" class="nav-item">
+                            <a class="nav-link px-lg-3 py-3 py-lg-4" href="#">
+                                {% if request.user.datosextra.avatar %}
+                                <img src={{request.user.datosextra.avatar.url}} alt="avatar" width="30" height="24" class="d-inline-block align-text-top">
+                                {% endif %}
+                                Hola {{request.user.username}}
+                            </a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'editar_perfil' %}">Editar perfil</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'logout' %}">Cerrar sesion</a></li>
                         {% endif %}
                     </ul>

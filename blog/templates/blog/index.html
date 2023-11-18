@@ -6,6 +6,10 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
+                    <form action="">
+                        <input type="text" name="title" placeholder="Buscar por titulo">
+                        <input type="submit" value="Buscar">
+                    </form>
                     {% for post in posts %}
                     <!-- Post preview -->
                     <div class="post-preview">
@@ -30,4 +34,4 @@
             </div>
         </div>
 
-{% endblock %}
+{% endblock mainContent %}

@@ -4,6 +4,7 @@
 {% block mainContent %}
         <!-- V1 -->
         <!-- Post Content -->
+        {% if request.user == form.instance.userId %}
         <article class="mb-4">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -11,17 +12,19 @@
                         <form action="" method="POST">
                             {% csrf_token %}
                             <table>
-                                {{ form.media }}
-                                {{ form }}
+                                {{form.media}}
+                                {{form | safe}}
+                            
                             </table>
-                            <button class="btn btn-primary" >Subir</button>
-                        </form>                 
+                            <input type="submit" value="Actualizar">
+                        </form>
                     </div>
                 </div>
             </div>
         </article>
-
-
-
+        {% endif %}
+        {% if request.user != form.instance.userId %}
+        <h1> Ups.. Parece que no eres el autor del post!</h1>
+        {% endif %}
 
 {% endblock mainContent %}
