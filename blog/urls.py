@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from .views import v_index, v_about, v_contact, v_post, v_samplepost, ListarPosts, EditPost
+from .views import v_index, v_about, v_contact, v_post, v_samplepost, ListarPosts, EditPost, BorrarPost
 urlpatterns = [
     path('', v_index, name="index"),
     #path('index/', v_index, name="index"),
@@ -11,4 +11,5 @@ urlpatterns = [
     path('contact/', v_contact, name="contact"),
     path('samplepost/<int:blogpostId>/', v_samplepost, name="samplepost"),
     path('editpost/<int:pk>', EditPost.as_view(), name="editpost"),
+    path('borrarpost/<int:pk>', BorrarPost.as_view(), name="borrarpost"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

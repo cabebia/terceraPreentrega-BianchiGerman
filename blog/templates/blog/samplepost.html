@@ -37,7 +37,8 @@
                         </p>
                         {% if request.user == data.userId %}
                         <a href="{% url 'editpost' data.id %}">Editar</a>
-                    {% endif %}
+                        <a href="{% url 'borrarpost' data.id %}">Eliminar</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

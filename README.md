@@ -22,7 +22,7 @@ Los usuarios pueden:
 6) Buscar posteos por título
 7) Agregar información adicional a su perfil (nombre completo y una imágen de Avatar)
 8) Editar su información personal (email, nombre completo, contraseña, imágen de Avatar)
-
+9) Borrar cualquier posteo propio si ya no les gusta
 
 
 

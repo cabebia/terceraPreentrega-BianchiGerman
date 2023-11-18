@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block mainContent %}
+        <!-- V1 -->
+        <!-- Post Content -->
+        {% if request.user == object.userId %}
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            Desea eliminar el siguiente post? " {{ post.title }} "
+                            <input type="submit" value="Confirmar">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </article>
+        {% endif %}
+        {% if request.user != object.userId %}
+        <h1> Ups.. Parece que no eres el autor del post!</h1>
+        {% endif %}
+
+{% endblock mainContent %}

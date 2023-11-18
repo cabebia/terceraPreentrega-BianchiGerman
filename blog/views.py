@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -54,6 +54,16 @@ def v_samplepost(request, blogpostId):
         post = None
 
     return render(request, 'blog/samplepost.html', {"data": post})
+
+class BorrarPost(LoginRequiredMixin, DeleteView):
+    model = BlogPost
+    template_name = "blog/borrarpost.html"
+    success_url = reverse_lazy("index")
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['post'] = self.get_object()
+        return context
 
 class EditPost(LoginRequiredMixin, UpdateView):
     model = BlogPost
