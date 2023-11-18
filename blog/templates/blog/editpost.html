@@ -4,7 +4,7 @@
 {% block mainContent %}
         <!-- V1 -->
         <!-- Post Content -->
-        {% if request.user.id == form.userId %}
+        {% if request.user == form.instance.userId %}
         <article class="mb-4">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -12,8 +12,8 @@
                         <form action="" method="POST">
                             {% csrf_token %}
                             <table>
-                            {{form.media}}
-                            {{form | safe}}
+                                {{form.media}}
+                                {{form | safe}}
                             
                             </table>
                             <input type="submit" value="Actualizar">
@@ -23,7 +23,7 @@
             </div>
         </article>
         {% endif %}
-        {% if request.user.id != form.userId %}
+        {% if request.user != form.instance.userId %}
         <h1> Ups.. Parece que no eres el autor del post!</h1>
         {% endif %}
 
