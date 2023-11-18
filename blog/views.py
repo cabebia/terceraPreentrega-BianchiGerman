@@ -1,4 +1,9 @@
 from django.shortcuts import render, redirect
+from django.views.generic.list import ListView
+from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .forms import BlogPostForm
 from .models import BlogPost
 # Create your views here.
@@ -8,6 +13,21 @@ def v_index(request):
 
     return render(request, 'blog/index.html', {"posts": last_4_post})
 
+class ListarPosts(ListView):
+    model = BlogPost
+    context_object_name = 'posts'
+    template_name = 'blog/index.html'
+
+    def get_queryset(self):
+        title = self.request.GET.get('title', '')
+        if title:
+            posts = self.model.objects.filter(title__icontains=title)
+            ...
+        else:
+            posts = self.model.objects.all().order_by('-id')[:4]
+        return posts
+    
+    
 def v_post(request):
     if request.method == 'POST':
         form = BlogPostForm(request.POST)
@@ -34,3 +54,9 @@ def v_samplepost(request, blogpostId):
         post = None
 
     return render(request, 'blog/samplepost.html', {"data": post})
+
+class EditPost(LoginRequiredMixin, UpdateView):
+    model = BlogPost
+    template_name = "blog/editpost.html"
+    success_url = reverse_lazy("index")
+    fields = ['title','subtitle','postContent']

@@ -1,7 +1,13 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
-from .forms import MyUserCreationForm
+from django.contrib.auth.views import PasswordChangeView
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+
+from .forms import EdicionPerfil, MyUserCreationForm
+from .models import DatosExtra
+
+
 def v_login(request):
     ''' V1 
     if request.method == "POST":
@@ -36,6 +42,8 @@ def v_login(request):
 
             login(request, user)
 
+            DatosExtra.objects.get_or_create(user=request.user)
+
             return redirect('index')
         else:
             form = AuthenticationForm()
@@ -58,15 +66,50 @@ def v_register(request):
 
     return render(request, 'users/register.html', {'form': form})
     '''
-    form = MyUserCreationForm()
+    if request.method == "POST":
+        #form = UserRegisterForm(request.POST)
+        form = MyUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = MyUserCreationForm()
 
     return render(request, 'users/register.html', {'form': form})
 
+def v_editar_perfil(request):
+    datos_extra = request.user.datosextra
+    # formulario = EdicionPerfil(instance=request.user, initial={'nombre_completo': datos_extra.nombre_completo, 'avatar': datos_extra.avatar, 'nivel': datos_extra.nivel, 'rango': datos_extra.rango})
+    formulario = EdicionPerfil(instance=request.user, initial={'nombre_completo': datos_extra.nombre_completo})   
+    
+    if request.method == 'POST':
 
+        formulario = EdicionPerfil(request.POST, request.FILES, instance=request.user)
+        
+        if formulario.is_valid():
+            
+            nuevo_nombre = formulario.cleaned_data.get('nombre_completo')
+            nuevo_avatar = formulario.cleaned_data.get('avatar')
+            
+            if nuevo_nombre:
+                datos_extra.nombre_completo = nuevo_nombre
+            if nuevo_avatar:
+                datos_extra.avatar = nuevo_avatar
+                
+            datos_extra.save()
+
+            formulario.save()
+            
+            return redirect('editar_perfil')
+    
+    return render(request, 'users/editar_perfil.html', {'form': formulario})
 
 def v_index2(request):
     return redirect('index')
 
-
+class CambiarPassword(PasswordChangeView):
+    template_name = 'users/cambiar_password.html'
+    success_url = reverse_lazy('editar_perfil')
+    ...
 
 

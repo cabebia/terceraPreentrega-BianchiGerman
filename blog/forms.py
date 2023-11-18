@@ -1,5 +1,5 @@
 from django import forms
-from .models import BlogPost  # Asegúrate de que estás importando tu modelo BlogPost
+from .models import BlogPost  
 
 class BlogPostForm(forms.ModelForm):
     class Meta:
