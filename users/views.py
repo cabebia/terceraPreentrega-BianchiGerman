@@ -9,49 +9,39 @@ from .models import DatosExtra
 
 
 def v_login(request):
-    ''' V1 
+    # V2
     if request.method == "POST":
-        form = AuthenticationForm(request, data = request.POST)
-        if form.is_valid():
-            usuario = form.cleaned_data.get('username')
-            passw = form.cleaned_data.get('password')
-            user = authenticate(username=usuario, password=passw)
+    # CÓDIGO PARA MÉTODO <POST>
 
-            if user is not None:
-                login(request, user)
-                print("Uusario encontrado")
-                return redirect('index')
-            else:
-                print("Uusario no encontrado")
-                return render(request, 'users/login.html', {"mensaje": 'Datos incorrectos'})
-        else:
-            print("Formulario incorrecto")
-            return render(request, 'users/login.html', {"mensaje": "Formulario incorrecto"})
-    
-    form = AuthenticationForm()
-    '''
-    if request.method == "POST":
         form = AuthenticationForm(request.POST, data=request.POST)
         # Si se encuentra usuario lo devuelve, sino devuelve None
         if form.is_valid():
             # is_valid() es un refuerzo al sistema de autenticación.
+
             user = form.cleaned_data.get('username')
             contra = form.cleaned_data.get('password')
+            # obtenemos datos del formulario "form" limpios
 
             user = authenticate(username=user, password=contra)
-
             login(request, user)
+            # usamos el módulo authenticate y login de django contrib
 
             DatosExtra.objects.get_or_create(user=request.user)
+            # intentamos obtener los datos extras del usuario "user" y
+            # si no los encuentra entonces creamos una nueva instancia del modelo "DatosExtra"
+            # y se la asociamos
 
+            # <> SI ESTAMOS ACA ES PORQUE EL USUARIO SE AUTENTICÓ Y LOGEÓ EXITOSAMENTE <> #
             return redirect('index')
+        
         else:
             form = AuthenticationForm()
-            return render(request, 'users/login.html', {"form": form})
+            return render(request, 'users/login.html', {"form": form, "mensaje": "<-> Error de inicio de sesion <->"})
     
+    # CÓDIGO PARA MÉTODO <GET>
 
     form = AuthenticationForm()
-    return render(request, 'users/login.html', {"form": form})
+    return render(request, 'users/login.html', {"form": form })
 
 def v_register(request):
     ''' V1 
