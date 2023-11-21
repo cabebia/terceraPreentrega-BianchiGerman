@@ -36,8 +36,8 @@
                             <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>
                         </p>
                         {% if request.user == data.userId %}
-                        <a href="{% url 'editpost' data.id %}">Editar</a>
-                        <a href="{% url 'borrarpost' data.id %}">Eliminar</a>
+                        <a href="{% url 'editpost' data.id %}"><u>Editar</u></a>
+                        <a href="{% url 'borrarpost' data.id %}"><u>Eliminar</u></a>
                         {% endif %}
                     </div>
                 </div>
